@@ -1,0 +1,69 @@
+﻿@model IEnumerable<WebBook.Models.Books>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@{
+    Layout = "~/Views/Shared/_LayoutToolBar.cshtml";
+}
+
+
+<div id="errorMessageDiv" runat="server"></div>
+<table class="table">
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td width="20%">
+                    @if (item.Picture != null)
+                    {
+                        <img style='width:100%; height:auto;' src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Picture))" />
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.Picture)
+                    }
+                </td>
+                <td>
+                    <p>
+                        <h3>
+                            <b>
+                                <a asp-action="Details" asp-route-id="@item.Id">@item.Name</a>
+                            </b>
+                        </h3>
+                    </p>
+                    <p>
+                        <h4>
+                            @Html.DisplayFor(modelItem => item.Author)
+                        </h4>
+
+                    </p>
+                    <p>
+                        <h5>
+                            Издатель:@Html.DisplayFor(modelItem => item.Publisher)
+                            Номер издания:@Html.DisplayFor(modelItem => item.PublishNumber)
+                        </h5>
+
+
+
+                    </p>
+                    <p>
+
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </p>
+                    <p>
+                        <div align="right">
+                            <a asp-action="Edit" asp-route-id="@item.Id">Редактирование</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a> |
+                            <a asp-action="Index" asp-controller="Histories" asp-route-id="@item.Id">Список книгодержателей</a>
+                        </div>
+
+                    </p>
+
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+

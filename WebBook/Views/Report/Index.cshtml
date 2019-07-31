@@ -1,0 +1,48 @@
+﻿@model IEnumerable<WebBook.Models.History>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@{
+    Layout = "~/Views/Shared/_LayoutToolBar.cshtml";
+}
+@{await Html.RenderPartialAsync("_BtnMenu");}
+<h3>Книг взято на данный момент:@ViewData["Message"]</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Book)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Issue)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Book.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Issue)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<form asp-action="IndexPrint" method="post">
+    <div class="form-group" align="right">
+        <input asp-action="IndexPrint" type="submit" value="Версия для печати" class="btn" />
+    </div>
+</form>

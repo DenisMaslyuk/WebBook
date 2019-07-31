@@ -1,0 +1,46 @@
+﻿@model WebBook.Models.History
+
+@{
+    ViewData["Title"] = "Delete";
+}
+@{
+    Layout = "~/Views/Shared/_LayoutToolBar.cshtml";
+}
+
+<h3>Вы действительно хотите удалить историю?</h3>
+<div>
+    <h4>History</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Issue)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Issue)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReturnDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReturnDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Book)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Book.Author)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.Email)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Удалить" class="btn btn-default" /> |
+        <a asp-action="Index">Вернуться на страницу</a>
+    </form>
+</div>
